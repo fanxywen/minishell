@@ -1,0 +1,7 @@
+This shell accomplished first 3 steps and single redirection.
+
+Future to do: implement pipe and multiple redirections.
+
+To start with ./myShell
+
+For testing, see TESTING.txt

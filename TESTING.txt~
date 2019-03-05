@@ -1,0 +1,265 @@
+Run ./myShell < testcase/input1.txt
+Expected output: print out "cat testcase/input1.txt" on standard output, which is correct because cat print out file in standard output, and the content in input1.txt is cat testcase/input1.txt
+
+Run ./myShell < testcase/input2.txt
+Expected output: first print out directory contents and entries start with '.', which is correct because input2.txt lists command ls -a, which will list directory contents and not ignore entries start with '.'.
+
+Run ./myShell < testcase/input3.txt
+Expected output: list directory contents, which is correct because what in input3.txt is /bin/ls
+
+Run ./myShell < testcase/input4.txt
+Expected output: list directory contents and entries start with '.', which is correct because what in input4.txt is /bin/ls -a
+
+Run ./myShell < testcase/input5.txt
+Expected output: print out: this is a testcase for executable file,
+                            Program exited with status 0, which is correct because in test.cpp, the only thing it does is to print out this message, myshell should be able to execute files and print out exit status.
+
+Run ./myShell < testcase/input6.txt
+Expected output: print out, argv[1] is 1,
+                            argv[2] is 2,
+			    argv[3] is 3,
+			    Program exited with status 0, which is correct because in testParse.cpp, it prints out all the argument, according to the result, myshell can split argument according to white spaces, and report exit status..
+
+
+Run ./myShell < testcase/input7.txt
+Expected output: print out, argv[1] is 1,
+      	      	      	    argv[2] is 2,
+                            argv[3] is 3,
+			    Program exited with status 0, which is correct because myshell should skip all the white spaces and report exit status.
+
+Run ./myShell < testcase/input8.txt
+Expected output: print out, argv[1] is 1 2,
+                            argv[2] is  3,
+			    Program exited with status 0, which is correct because myshell should not skip slash escaped spaces.
+
+Run ./myShell < testcase/input9.txt
+Expected output: print out, argv[1] is  ,
+                            argv[2] is 2,
+			    argv[3] is 3 ,
+			    Program exited with status 0, which is correct because myshell should not skip slash escaped spaces.
+
+Run ./myShell < testcase/input10.txt
+Expected output: print out, Program was killed by signal 11, which is correct because myshell should be able to report different exit status.
+
+Run ./myShell < testcase/input11.txt
+Expected output: exit myshell, which is correct because exit command encountered, should exit.
+
+Run ./myShell then press ctrl+d
+Expected output: exit myshell, which is correct because shell should exit when EOF is encountered.
+
+Run ./myShell then press ENTER
+Expected output: print out prompt again, which is correct because shell should always print prompt.
+
+Run ./myShell < tescase/input12.txt
+Expected output: print out: command 123 not found, which is correct because it is not a valid command.
+
+Run ./myShell < testcase/input13.txt
+Expected output: print out: command ./testCmd not found, which is correct because it cannot be found in specified directory.
+
+Run ./myShell < testcase/input14.txt
+Expected output: the prompt path changes to /home/wg72, which is correct because when cd does not have any argument, it changes to home directory.
+
+Run ./myShell < testcase/input15.txt
+Expected output: the prompt path change to /home/wg72/ece551, which is correct because when cd .., should move up one directory.
+
+Run ./myShell < testcase/input16.txt
+Expected output: print out: invalid argument, which is correct because cd can only take one or no argument.
+
+Run ./myShell < testcase/input17.txt
+Expected output: cd: no such file or directory: ./123, which is correct because 123 is not a valid directory.
+
+Run ./myShell < testcase/input18.txt
+Expected output: cd -
+
+Run ./myShell < testcase/input19.txt
+Expected output: invalid variable: more argument needed, which is correct because set requires at least one argument
+
+Run ./myShell < testcase/input20.txt
+Expected output: 1, which is correct because a is set with value of 1.
+
+Run ./myShell < testcase/input21.txt
+Expected output: 2, which is correct because A is set with value of 2.
+
+Run ./myShell < testcase/input22.txt
+Expected output: abc, which is correct because 123 is set with value of abc.
+
+Run ./myShell < testcase/input23.txt
+Expected output: 2b, which is correct because 1a is set with value of 2b.
+
+Run ./myShell < testcase/input24.txt
+Expected output: 2!, which is correct because 13a_ is set with value of 2!
+
+Run ./myShell < testcase/input25.txt
+Expected output: set: fail to set 1abc%, which is correct because 1abc% is not a valid variable name.
+
+Run ./myShell < testcase/input26.txt
+Expected output: empty line, which is correct because if value is not provided when set, default value is ""
+
+Run ./myShell < testcase/input27.txt
+Expected output: hello world!, which is correct because value should be the string on the rest of the command line (even if it contains spaces, etc.)
+
+Run ./myShell < testcase/input28.txt
+Expected output: hello world!, which is correct because slash escpaed spaces shouldn't be skipped.
+
+Run ./myShell < testcase/input29.txt
+Expected output: can't find a in the environment variable list, which is correct because it needs to be exported in order to be in the environment
+
+Run ./myShell < testcase/input30.txt
+Expected output: a=223 in the environment, which is correct because after export, it shows up in environment variable list.
+
+Run ./myShell < testcase/input31.txt
+Expected output: a= in the environment, which is correct because if export a variable not already set, first set its value to default and then export to environment.
+
+
+Run ./myShell < testcase/input32.txt
+Expected output: a 1 cd!!, which is correct because var2 is set as $var1, which means var2 has the same value asd var1.
+
+Run ./myShell < testcase/input33.txt
+Expected output: 1, which is correct because v1's value is not in number, executing inc command will increase it from default 0 to 1.
+
+Run ./myShell < testcase/input34.txt
+Expected output: 2, which is correct because v1's value is not in number, executing inc command twice will increase value to 2.
+
+Run ./myShell < testcase/input35.txt
+Expected output: 1, which is correct because when inc a non existing variable, the shell will first set the variable to default value of "", then increase it by 1.
+
+Run ./myShell < testcase/input36.txt
+Expected output: 23, which is correct because v1 has value of 22, inc it will increase its value to 23.
+
+Run ./myShell < testcase/input37.txt
+Expected output: 24, which is correct because v1 has value of 22, inc twice will result in 24.
+
+Run ./myShell < testcase/input38.txt
+Expected output: -1, which is correct because v1 has value of -2, inc it will result in -1.
+
+Run ./myShell < testcase/input39.txt
+Expected output: 1, which is correct because the value of v1 is in base 16 and contains alpha, it will be treated as not number, inc it will result in 1.
+
+Run ./myShell < testcase/input40.txt
+Expected output: 102, which is correct because the value of v2 is in base 2, it will be treated as a base 10 number. inc it will result in 102.
+
+Run ./myShell < testcase/input41.txt
+Expected output: v1=hello v2=world in environment, which is correct because when export has more than 1 arguments, it will export vairables one by one.
+
+Run ./myShell < testcase/input42.txt
+Expected output: v1=hello, v2= in environment, which is correct because when export has more than 1 arguments, and one of the variables is not set before, it will set the non existing variable to default "" then export.
+
+Run ./myShell < testcase/input43.txt
+Expected output: export: variable name needed, which is correct because export needs at least one argument.
+
+Run ./myShell < testcase/input44.txt
+Expected output: inc: variable name needed, which is correct because inc needs at least one argument.
+
+Run ./myShell < testcase/input45.txt
+Expected output: 1
+                 135, which is correct because when inc has more than 1 arguments, it will inc value one by one.
+Run ./myShell < testcase/input46.txt
+Expected ouptut: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games, which is correct because shell first initialize the virable map with all the current environment variables.
+
+Run ./myShell < testcase/input47.txt
+Expected output: Command ls not found, which is correct because after changing PATH to /home/wg72, ls shouldn't be found in current PATH.
+
+Run ./myShell < testcase/input48.txt
+Expected output: this is a testcase for executable file
+                 Program exited with status 0, which is correct because since the command contains slash, it searches in the specified directory and change PATH will not affact it.
+
+Run ./myShell < testcase/input49.txt
+Expected output: /home/wg72
+                 /home/wg72/ece551/mp_miniproject/myshell, which is correct because after cd, the value of PWD and OLDPWD changes accordingly.
+
+Run ./myShell < testcase/input50.txt
+Expected output: /home/wg72, which is correct because cd ~ changes to home directory, evaluate PWD will be home directory.
+
+Run ./myShell < testcase/input51.txt
+Expected output: /home/wg72/ece551/mp_miniproject/myshell/home/wg72, which is correct because when $var1$var2, the shell should concatenate their value.
+
+Run ./myShell < testcase/input52.txt
+Expected output: hello-world, which is correct because when $var followed by a non number non alpha non underscore character, it should print out the value along with the character.
+
+Run ./myShell < testcase/input53.txt
+Expected output: /home/wg72/ece551/mp_miniproject/myshell~~@@, which is correct because value and characters are printed.
+
+Run ./myShell < testcase/input54.txt
+Expected output: !!.., which is correct because variable not set before is set with value of "", output are its value with extra symbols.
+
+Run ./myShell < testcase/input55.txt
+Expected output: /bin/cat: input1.txt: No such file or directory, which is correct because with variable 12 set with value at, c$12 successfully replace $12 with its value, and execute.
+
+Run ./myShell < testcase/input56.txt
+Expected output: /bin/cat: /home/wg72/ece551/mp_miniproject/myshell: Is a directory, which is correct because replace $PWD in the argument with its value.
+
+Run ./myShell < testcase/input57.txt
+Expected output: cat testcase/input57.txt > output.txt
+                 cat output.txt, which is correct because the output of cat testcase/input57.txt redirects to output.txt whose content is the content in input57.txt, and also the shell can deal with spaces before and after '>'
+
+Run ./myShell < testcase/input58.txt
+Expected output: cat testcase/input58.txt>output.txt
+                 cat output.txt, which is correct because same reason as the above one, and also the shell can execute when there are no spaces before and after '>'
+
+Run ./myShell < testcase/input59.txt
+Expected output: do nothing and print prompt again, which is correct because when > is the first charater in commandline, do nothing.
+
+Run ./myShell < testcase/input60.txt
+Expected output: output redirection needs one more argument, which is correct because output redirection needs output filename.
+
+Run ./myShell < testcase/input61.txt
+Expected output: this is test input redir
+                 Program exited with status 0,which is correct because successfully redirect stdin to testcase/inredir.txt
+
+Run ./myShell < testcase/input62.txt
+Expected output: do nothing and print prompt again, which is correct because when < is the first character in command line, do nothing.
+
+Run ./myShell < testcase/input63.txt
+Expected output: input redirection needs one more argument, which is correct because when input redirection needs input filename.
+
+Run ./myShell < testcase/input64.txt
+Expected output: this is test input redir
+                 Program exited with status 0, which is correct because successfullly redirect stdin to testcase/inredir.txt, and can also hand multiple white spaces after '<'
+
+Run ./myShell < testcase/input65.txt
+Expected output: cannot stat 'nonexist.txt': No such file or directory, which is correct because the error message is redirected to err.txt
+
+Run ./myShell < testcase/input66.txt
+Expected output: do nothing and print prompt again, which is correct because when 2> is at the start of command line, do nothing.
+
+Run ./myShell < testcase/input67.txt
+Expected output: error redirection needs one more argument, which is correct because error redirection needs filename to redirect to.
+
+Run ./myShell < testcase/input68.txt
+Expected output: cat input68.txt > ouput.txt ouput2.txt
+                 cat ouput.txt, which is correct because when multiple file is entered, choose the first one to redirect to.
+
+Run ./myShell < testcase/input69.txt
+Expected output: this is an existing file
+                 myShell:prompt.cpp var.cpp commandLine.cpp pipe.cpp main.cpp
+                 		    g++ -o myShell -pedantic -std=gnu++11 -Wall -Werror -ggdb3 prompt.cpp var.cpp commandLine.cpp pipe.cpp main.cpp
+                 clean:
+			rm *~, which is correct because shell can overwrite exist file with the redirected output.
+
+Run ./myShell < testcase/input70.txt
+Expected output: cat testcase/empty.txt
+                 cat testcase/input70.txt>testcase/empty.txt
+		 cat testcase/empty.txt, which is correct because shell is able to write on empty file.
+
+Run ./myShell < testcase/input71.txt
+Expected output: cat testcase.input71.txt>testcase/notexist.txt
+                 cat testcase/notexist.txt, which is correct because shell can create a file then write the ouput.
+
+Run ./myShell < testcase/input72.txt
+Expected output: Pipe operation need one more argument. which is correct because '|' cannot be the last charater on the command line.
+
+Run ./myShell < testcase/input73.txt
+Expected output: do nothing and print out prompt again, which is correct because when '|' is the first character, do nothing.
+
+-------------------------FOLLOWING TESTCASES ARE FOR FUTURE USE, I HAVEN'T IMPLEMENTED THOSE FUNCTION YET------------------------
+
+the shell should be able to handle more than one rediretion(same type or different type);
+
+when user typed in two redirection symbol, but without any filename between them, the shell should be able to report error.
+
+the shell should be able to pipe(no matter one pipe or multiple pipes);
+
+the shell should be able to run mixed redirection and pipe(only if the mixed in a reasonable way)
+
+the shell should be able to report error when there is no arguments between pipes.
+ 
